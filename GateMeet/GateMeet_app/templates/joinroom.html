@@ -1,0 +1,115 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Join Room | GateMeet</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap">
+    <style>
+        body {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px;
+            background: linear-gradient(135deg, #4e54c8, #71b7e6);
+            margin: 0;
+        }
+
+        .container {
+            max-width: 600px;
+            width: 100%;
+            background-color: #4e54c8; 
+            padding: 25px 30px;
+            border-radius: 5px;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+            text-align: center;
+        }
+
+        header {
+            color: #ffffff;
+            font-weight: bold;
+            font-size: 30px;
+            position: relative;
+        }
+
+        header::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            height: 07px;
+            width: 600px;
+            border-radius: 5px;
+            background: linear-gradient(135deg, #71b7e6, #71b7e6);
+        }
+
+        form {
+            margin-top: 50px;
+        }
+
+        input {
+            padding: 20px;
+            margin-right: 10px;
+            border: none;
+            border-radius: 5px;
+        }
+
+        .button {
+            height: 5px;
+            margin: 20px 2;
+            background: linear-gradient(135deg, #71b7e6, #9b59b6);
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 15px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .button:hover {
+            background: linear-gradient(-135deg, #71b7e6, #9b59b6);
+        }
+
+        a {
+            color: #ffffff;
+            text-decoration: underline;
+        }
+
+        header {
+            font-family: 'Poppins', sans-serif;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="login form">
+            <header>Join Room</header>
+            <form action="{% url 'join' %}" method="POST">
+                {% csrf_token %}
+                <div style="text-align: center;">
+                    <input type="text" placeholder="Enter Room ID" name="roomID" required>
+                </div>
+                <div style="text-align: center; margin-top: 10px;">
+                    <input type="submit" class="button" value="Join">
+                </div>
+            </form>
+            <center>
+                {% if success %}
+                <p style="color: green;"><b>{{ success }}</b></p>
+                {% endif %}
+                {% if error %}
+                <p style="color: red;">{{ error }}</p>
+                {% endif %}
+            </center>
+        </div>
+    </div>
+</body>
+
+</html>
