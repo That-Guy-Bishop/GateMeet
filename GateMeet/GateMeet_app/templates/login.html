@@ -1,0 +1,43 @@
+{% load static %} 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | GateMeet</title>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="/static/css/style1.css">
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="/static/css/favicon_io/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/static/css/favicon_io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/static/css/favicon_io/favicon-16x16.png">
+    <link rel="manifest" href="/static/css/favicon_io/site.webmanifest">
+
+</head>
+<body>
+    <div class="box-form">
+        <div class="left">
+            <img src="/static/css/IMG-20231202-WA0221.jpg" alt="Background Image">
+            <div class="overlay">
+                <h1>GateMeet</h1>
+                <p>"Hop On GateMeet!! Share Your Pleasure With Others"</p>
+            </div>
+        </div>
+        <div class="right">
+            <h5>Login</h5>
+            <p>Don't have a GateMeet account? <a href="{% url 'register' %}">Create An Account</a> with us.</p>
+            <form method="post" action="{% url 'login' %}?next={{ request.GET.next }}">
+                {% csrf_token %}
+                <div class="inputs">
+                    <input type="text" placeholder="email" name="username" required>
+                    <br>
+                    <input type="password" placeholder="password" name="password" required>
+                </div>
+                <br>
+                <button class="white-button" type="submit">Login</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
